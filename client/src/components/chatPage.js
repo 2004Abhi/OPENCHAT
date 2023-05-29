@@ -12,11 +12,13 @@ const ChatPage = ({ socket }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const data=await axios.get("http://localhost:3001/api/chat");
+      const data = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/chat`
+      );
       setMessages(data.data.message);
     }
     fetchData();
-  },[]);
+  }, []);
   useEffect(() => {
     socket.on("messageResponse", (data) => setMessages([...messages, data]));
     // console.log(messages);
