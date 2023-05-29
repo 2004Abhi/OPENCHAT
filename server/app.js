@@ -30,7 +30,7 @@ app.use("/api",chatRouter)
 
 const socketIO = new Server(http, {
   cors: {
-    origin: "https://vercel.com/2004abhi/openchat-c37f",
+    origin: "http://localhost:3000",
   },
 });
 
