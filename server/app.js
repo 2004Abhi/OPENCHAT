@@ -7,7 +7,7 @@ import {createServer} from 'http'
 import connectMongo from './config/db.js';
 import axios from 'axios';
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT||3001;
 
 //config env
 dotenv.config()
