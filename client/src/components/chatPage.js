@@ -20,7 +20,9 @@ const ChatPage = ({ socket }) => {
     fetchData();
   }, []);
   useEffect(() => {
-    socket.on("messageResponse", (data) => setMessages([...messages, data]));
+    socket.on("messageResponse", (data) =>{ 
+      axios.post(`${process.env.REACT_APP_BASE_URL}/api/chat`,data);
+      setMessages([...messages, data])});
     // console.log(messages);
   }, [socket, messages]);
 
