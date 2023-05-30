@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import checkPageStatus from "../utils/functions";
+import axios from "axios";
 
 const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState("");
@@ -21,12 +22,14 @@ const ChatFooter = ({ socket }) => {
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (message.trim() && localStorage.getItem("userName")) {
-      socket.emit("message", {
+      const data={
         text: message,
         name: localStorage.getItem("userName"),
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
-      });
+      }
+      axios.post(`${process.env.REACT_APP_BASE_URL}/api/chat`,data);
+      socket.emit("message", data);
       checkPageStatus(message,localStorage.getItem("userName"))
     }
     setMessage("");
