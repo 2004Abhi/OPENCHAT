@@ -31,7 +31,7 @@ const ChatFooter = ({ socket }) => {
         socketID: socket.id,
       };
 
-      console.log(`This message is sent by me: ${data.name}`);
+      // console.log(`This message is sent by me: ${data.name}`);
 
       axios.post(`${process.env.REACT_APP_BASE_URL}/api/chat`, data);
       socket.emit("message", data);
